@@ -4,5 +4,13 @@
   }
 
 .item{
-    color: white;
+    color: lightblue;;
+}
+
+.item a{
+    text-decoration: none;
+}
+
+.item a:hover {
+    color: lightblue;
 }
