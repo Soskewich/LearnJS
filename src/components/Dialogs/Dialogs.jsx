@@ -8,8 +8,8 @@ import Message from './Message/Message';
 const Dialogs = (props) => {
     
 
-    let dialogsElements = props.dialogsData.map( dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messageElemnts = props.messageData.map( message =>  <Message message={message.message} id={message.id}/>);
+    let dialogsElements = props.state.dialogsData.map( dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    let messageElemnts = props.state.messageData.map( message =>  <Message message={message.message} id={message.id}/>);
     
     
     const [Active, setActive] = useState(false);
