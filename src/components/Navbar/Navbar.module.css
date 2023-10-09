@@ -4,7 +4,7 @@
   }
 
 .item{
-    color: lightblue;;
+    color: rgb(196, 230, 241);
 }
 
 .item a{
@@ -13,4 +13,5 @@
 
 .item a:hover {
     color: lightblue;
+    text-decoration: none;
 }
