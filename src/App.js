@@ -10,6 +10,7 @@ import {Route, Router, Routes} from "react-router-dom";
 
 
 
+
 const App = (props) => {
     
     return (
@@ -19,8 +20,16 @@ const App = (props) => {
                     <Navbar/>
                     <div className="app-wrapper-content">
                         <Routes>
-                            <Route exact path='/profile' element={<Profile state={props.state.profilesPage}/>}/>
-                            <Route exact path="/dialogs" element={<Dialogs state={props.state.messagesPage}/>}/>
+
+
+                            <Route exact path='/profile' element={<Profile 
+                            profilesPage={props.state.profilesPage} 
+                            addPost={props.addPost} 
+                            updatePostText={props.updatePostText}/>}/>,
+
+
+
+                            <Route exact path="/dialogs" element={<Dialogs state={props.state.messagesPage} />}/>
 
                             
                         </Routes>
