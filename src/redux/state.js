@@ -1,5 +1,5 @@
-import {getMessage} from "@testing-library/jest-dom/dist/utils";
-
+const ADD_POST = "ADD-POST"
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
 let store = {
     _state: {
         profilesPage:{
@@ -38,26 +38,41 @@ let store = {
     _callSubscriber(){
         console.log('change done')
     },
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilesPage.newPostText,
-            likescount: 100
-        }
-        this._state.profilesPage.postsData.push(newPost);
-        this._state.profilesPage.newPostText = ''
-        this._callSubscriber(this._state);
-    },
-    updatePostText(newText){
-        this._state.profilesPage.newPostText = newText
-        this._callSubscriber(this._state);
-    },
+    
+    
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action){
+        if (action.type===ADD_POST){
+            let newPost = {
+                id: 5,
+                message: this._state.profilesPage.newPostText,
+                likescount: 100
+            }
+            this._state.profilesPage.postsData.push(newPost);
+            this._state.profilesPage.newPostText = ''
+            this._callSubscriber(this._state);
+        }
+        else if (action.type===UPDATE_POST_TEXT){
+            this._state.profilesPage.newPostText = action.newText
+            this._callSubscriber(this._state);
+        }
     }
 }
 
-
+ export const addPostActionCreation = () => {
+    return {
+      type: ADD_POST
+    }
+  }
+  
+  export const updatePostTextActionCreation = (text) => {
+    return {
+      type: UPDATE_POST_TEXT, newText: text
+    }
+  }
 
 
 
