@@ -1,7 +1,23 @@
-import state from "./state";
+import state from "./store";
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 const SEND_MESSAGE = 'SEND-MESSAGE'
-const diaolgsReducer = (state, action) => {
+
+let initialState = {
+    messageData: [
+        {id: 1, message:"hi"},
+        {id: 2, message:"HI"},
+        {id: 3, message:"Hello"},
+        {id: 4, message:"Hello!"},
+    ],
+    dialogsData: [
+        {id: 1, name:"Tema"},
+        {id: 2, name:"Valera"},
+        {id: 3, name:"Serega"},
+        {id: 4, name:"Danik"},
+    ],
+    newMessageText: ''
+}
+const diaolgsReducer = (state = initialState, action) => {
     switch (action.type){
         case UPDATE_MESSAGE_TEXT:
             state.newMessageText = action.newText
