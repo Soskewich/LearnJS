@@ -7,14 +7,17 @@ import {BrowserRouter} from "react-router-dom";
 
 
 import store from "./redux/redux-store";
+import { Provider } from 'react-redux';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let renderEntireTree = (state) => {
+
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={store.getState()} dispatch={store.dispatch.bind(store)} store={store} />
+                <Provider store={store}>
+                <App />
+                </Provider>
             </BrowserRouter>
         </React.StrictMode>
     );
@@ -24,9 +27,4 @@ let renderEntireTree = (state) => {
     // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
     reportWebVitals();
 
-}
-renderEntireTree(store._state);
-store.subscribe(()=>{
-    let state = store.getState()
-    renderEntireTree(state);
-});
+

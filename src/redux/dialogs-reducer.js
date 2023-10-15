@@ -18,27 +18,25 @@ let initialState = {
     newMessageText: ''
 }
 const diaolgsReducer = (state = initialState, action) => {
+
+    
     switch (action.type){
+
         case UPDATE_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            return state
+            return {...state,
+                newMessageText: action.newText
+            };
+
         case SEND_MESSAGE:
             let text = state.newMessageText
-            state.newMessageText = '';
-            state.messageData.push({id: 5, message: text})
-            return state
+            return {
+                ...state,
+                newMessageText: '',
+                messageData: [...state.messageData, {id: 5, message: text}]
+            };
         default:
             return state
     }
-    if (action.type === UPDATE_MESSAGE_TEXT){
-
-
-    }
-    else if (action.type === SEND_MESSAGE){
-
-
-    }
-    return state;
 }
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE})

@@ -12,11 +12,7 @@ let store = {
                 {id: 3, message: 'its my thirty post', likescount: 24},
 
             ],
-
             newPostText:"write text"
-
-
-
         },
         messagesPage: {
             messageData: [
