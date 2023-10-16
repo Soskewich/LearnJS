@@ -5,14 +5,11 @@ const SET_USERS = 'SET_USERS'
 
 let initialState =
 {
-    users: [
-
-        {id: 1, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Vlad',  status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-        {id: 2, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: true, fullName: 'Tema', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-        {id: 3, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Danik', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-
-    ],
-}
+    users: [],
+// {id: 1, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Vlad',  status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
+// {id: 2, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: true, fullName: 'Tema', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
+// {id: 3, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Danik', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
+};
 
 const usersReducer = (state = initialState, action) => {
 

@@ -1,42 +1,47 @@
 import React from "react";
 import style from './Users.module.css';
+import axios from "axios";
+import Userphoto from "../../assets/images/user.png"
 
 let Users = (props) => {
-    if (props.users.length === 0){
-    props.setUsers(
-        [
-        {id: 1, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Vlad',  status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-        {id: 2, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: true, fullName: 'Tema', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-        {id: 3, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Danik', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-        ]
-    )
-}
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response=> {
+                props.setUsers(response.data.items);
+            });
+        }
+    }
     return (
         <div>
+            <button onClick={getUsers}>Get Users</button>
             {
-            props.users.map( u => <div key={u.id}> 
+                props.users.map(u => <div key={u.id}>
                  <span>
                     <div>
-                        <img src={u.photoUrl} className={style.userPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : Userphoto} className={style.userPhoto}/>
                     </div>
                     <div>
-                        {u.followed ? <button onClick={ () => {props.unfollow(u.id)}}>Follow</button> : <button onClick={ () => {props.follow(u.id)}}>Unfollow</button> }
+                        {u.followed
+                            ? <button onClick={() => {
+                            props.unfollow(u.id)
+                        }}>Unfollow</button> : <button onClick={() => {
+                            props.follow(u.id)
+                        }}>follow</button>}
                     </div>
                  </span>
 
-                 <span>
                     <span>
-                        <div>{u.fullname}</div>
+                    <span>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>   
                     <span>
-                        <div>{u.location.country}</div>    
-                        <div>{u.location.city}</div>
+
                     </span>   
                  </span>
-            </div>)
+                </div>)
             }
-        
+
         </div>
     )
 }
