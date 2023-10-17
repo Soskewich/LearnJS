@@ -2,13 +2,16 @@ import state from "./store";
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+
 
 let initialState =
 {
     users: [],
-// {id: 1, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Vlad',  status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-// {id: 2, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: true, fullName: 'Tema', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
-// {id: 3, photoUrl: 'https://alaska-native-news.com/wp-content/uploads/lawandcommon/sos.jpg', followed: false, fullName: 'Danik', status:"Im Soskewich!", location: {city: "Omsk", country: "Russia" }},
+    pageSize: 5,
+    totalUserCount: 0,
+    currentPage: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -35,7 +38,13 @@ const usersReducer = (state = initialState, action) => {
                 } )
             }
         case SET_USERS:{
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+        }
+        case SET_CURRENT_PAGE:{
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_TOTAL_USERS_COUNT:{
+            return {...state, totalUserCount: action.count}
         }
         default:
             return state;
@@ -58,6 +67,17 @@ export const unFollowAC = (userId) => {
 export const setUsersAC = (users) => {
     return {
         type: SET_USERS, users
+    }
+}
+
+export const setCurrentPageAC = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE, currentPage
+    }
+}
+export const setUsersTotalCountAC = (totalUserCount) => {
+    return {
+        type: SET_TOTAL_USERS_COUNT, count: totalUserCount
     }
 }
 
