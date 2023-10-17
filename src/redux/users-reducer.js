@@ -55,9 +55,9 @@ export const unFollowAC = (userId) => {
     }
 }
 
-export const setUsersAC = (userId) => {
+export const setUsersAC = (users) => {
     return {
-        type: SET_USERS, userId
+        type: SET_USERS, users
     }
 }
 

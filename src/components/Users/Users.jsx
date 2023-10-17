@@ -3,19 +3,27 @@ import style from './Users.module.css';
 import axios from "axios";
 import Userphoto from "../../assets/images/user.png"
 
-let Users = (props) => {
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response=> {
-                props.setUsers(response.data.items);
-            });
-        }
+class Users extends React.Component{
+
+    componentDidMount() {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response=> {
+            this.props.setUsers(response.data.items);
+        });
     }
-    return (
-        <div>
-            <button onClick={getUsers}>Get Users</button>
-            {
-                props.users.map(u => <div key={u.id}>
+
+    render(){
+        return (
+            <div>
+                <div>
+                <span>1</span>
+                <span className={style.selectedPages}>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                </div>
+
+                {
+                    this.props.users.map(u => <div key={u.id}>
                  <span>
                     <div>
                         <img src={u.photos.small != null ? u.photos.small : Userphoto} className={style.userPhoto}/>
@@ -23,27 +31,28 @@ let Users = (props) => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                            props.unfollow(u.id)
-                        }}>Unfollow</button> : <button onClick={() => {
-                            props.follow(u.id)
-                        }}>follow</button>}
+                                this.props.unfollow(u.id)
+                            }}>Unfollow</button> : <button onClick={() => {
+                                this.props.follow(u.id)
+                            }}>Follow</button>}
                     </div>
                  </span>
 
-                    <span>
+                        <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
-                    </span>   
+                    </span>
                     <span>
 
-                    </span>   
+                    </span>
                  </span>
-                </div>)
-            }
+                    </div>)
+                }
 
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default Users;
