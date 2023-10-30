@@ -2,6 +2,8 @@ import React from "react";
 import Profile from "./Profile";
 import {getUserProfile} from "../../redux/profile-reducer";
 import {connect} from "react-redux";
+import {withAuthNavigate} from "../../hoc/withAuthNavigate";
+
 
 
 class ProfileContainer extends React.Component {
@@ -11,23 +13,27 @@ class ProfileContainer extends React.Component {
         if (!userId){
             userId = 2
         }
+
         this.props.getUserProfile(userId)
     }
 
 
     render() {
+
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
     }
 }
 
+let AuthNavigateComponent = withAuthNavigate(ProfileContainer);
+
 let mapStateToProps = (state) => ({
-    profile: state.profilesPage.profile
+    profile: state.profilesPage.profile,
 })
 
 
-export default connect(mapStateToProps, {getUserProfile})(ProfileContainer);
+export default connect(mapStateToProps, {getUserProfile})(AuthNavigateComponent);
 
 
 //

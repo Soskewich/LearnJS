@@ -1,5 +1,5 @@
 import style from './Dialogs.module.css';
-import {NavLink, matchRoutes} from "react-router-dom";
+import {NavLink, matchRoutes, Navigate} from "react-router-dom";
 import React, {useState} from "react";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -22,7 +22,11 @@ const Dialogs = (props) => {
         let text = event.target.value;
         props.updateMessageText(text);
     }
+
+
+
     const [Active, setActive] = useState(false);
+    if (!props.isAuth) return <Navigate to={'/login'} />;
     return(
         <div className={style.dialogs}>
             <div className={Active ? style.dialogsItems + ' ' + style.active: style.dialogsItems }>
