@@ -2,7 +2,8 @@ import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {getAuthUserData} from "../../redux/auth-reducer";
-import {Navigate} from "react-router-dom";
+// import {Navigate} from "react-router-dom";
+import {withAuthNavigate} from "../../hoc/withAuthNavigate";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
@@ -13,10 +14,7 @@ class HeaderContainer extends React.Component {
     }
 }
 
-let AuthNavigateComponent = (props) => {
-    if (!this.props.isAuth) return <Navigate to={'/login'} />;
-    return <HeaderContainer {...props} />
-}
+let AuthNavigateComponent = withAuthNavigate(HeaderContainer)
 
 
 const mapStateToProps = (state) => ({
